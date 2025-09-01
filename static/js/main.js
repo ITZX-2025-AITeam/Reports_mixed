@@ -76,7 +76,7 @@ function initializeWeightControls() {
     
     sliders.forEach((slider, index) => {
         slider.addEventListener('input', function() {
-            values[index].textContent = this.value;
+            values[index].textContent = parseFloat(this.value).toFixed(1);
         });
     });
 }
@@ -152,7 +152,7 @@ function updateWeightControls(weights) {
             
             if (slider && value) {
                 slider.value = weights[dimension].weight;
-                value.textContent = weights[dimension].weight;
+                value.textContent = parseFloat(weights[dimension].weight).toFixed(1);
             }
         }
     });
@@ -304,20 +304,20 @@ style.textContent = `
     }
     
     .notification.info {
-        background: #17a2b8;
+        background: #0969da;
     }
     
     .notification.success {
-        background: #28a745;
+        background: #2da44e;
     }
     
     .notification.warning {
-        background: #ffc107;
-        color: #333;
+        background: #d97706;
+        color: white;
     }
     
     .notification.error {
-        background: #dc3545;
+        background: #cf222e;
     }
 `;
 document.head.appendChild(style);

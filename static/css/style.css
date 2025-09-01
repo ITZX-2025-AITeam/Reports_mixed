@@ -7,9 +7,9 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
     min-height: 100vh;
-    color: #333;
+    color: #24292f;
 }
 
 .container {
@@ -20,22 +20,20 @@ body {
 
 /* 头部样式 */
 .header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
     padding: 20px 30px;
     margin-bottom: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(27, 31, 36, 0.04);
     text-align: center;
 }
 
 .header h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #0969da;
+    font-weight: 600;
 }
 
 .nav {
@@ -46,22 +44,24 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #666;
+    color: #656d76;
     padding: 10px 20px;
-    border-radius: 25px;
-    transition: all 0.3s ease;
+    border-radius: 6px;
+    transition: all 0.2s ease;
     font-weight: 500;
+    border: 1px solid transparent;
 }
 
 .nav-link:hover {
-    background: #667eea;
+    background: #0969da;
     color: white;
-    transform: translateY(-2px);
+    border-color: #0969da;
 }
 
 .nav-link.active {
-    background: #667eea;
+    background: #0969da;
     color: white;
+    border-color: #0969da;
 }
 
 /* 主要内容区域 */
@@ -83,24 +83,24 @@ body {
 
 /* 卡片样式 */
 .card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
     padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 1px 3px rgba(27, 31, 36, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border-color: #0969da;
+    box-shadow: 0 1px 3px rgba(27, 31, 36, 0.04), 0 0 0 3px rgba(9, 105, 218, 0.1);
 }
 
 .card h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    color: #333;
-    border-bottom: 2px solid #667eea;
+    color: #24292f;
+    border-bottom: 2px solid #0969da;
     padding-bottom: 10px;
 }
 
@@ -113,7 +113,7 @@ body {
 
 .chart-info {
     text-align: center;
-    color: #666;
+    color: #656d76;
 }
 
 .chart-info p {
@@ -132,15 +132,15 @@ body {
     align-items: center;
     gap: 15px;
     padding: 15px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border-left: 4px solid #667eea;
+    background: #f6f8fa;
+    border-radius: 6px;
+    border-left: 4px solid #0969da;
 }
 
 .weight-item label {
     min-width: 80px;
     font-weight: 500;
-    color: #333;
+    color: #24292f;
 }
 
 .weight-slider {
@@ -150,6 +150,7 @@ body {
     background: #ddd;
     outline: none;
     -webkit-appearance: none;
+    cursor: pointer;
 }
 
 .weight-slider::-webkit-slider-thumb {
@@ -158,7 +159,7 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #667eea;
+    background: #0969da;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
@@ -167,7 +168,7 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #667eea;
+    background: #0969da;
     cursor: pointer;
     border: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -177,7 +178,7 @@ body {
     min-width: 40px;
     text-align: center;
     font-weight: bold;
-    color: #667eea;
+    color: #0969da;
 }
 
 .update-btn {
@@ -221,11 +222,11 @@ body {
 }
 
 .action-btn.primary {
-    background: #667eea;
+    background: #0969da;
 }
 
 .action-btn.primary:hover {
-    background: #5a6fd8;
+    background: #0858b9;
 }
 
 .action-btn.small {
@@ -234,11 +235,11 @@ body {
 }
 
 .transfer-btn {
-    background: #17a2b8;
+    background: #0969da;
 }
 
 .transfer-btn:hover {
-    background: #138496;
+    background: #0858b9;
 }
 
 .rename-btn {
@@ -286,9 +287,9 @@ body {
 }
 
 .folder-path {
-    color: #666;
+    color: #656d76;
     font-family: monospace;
-    background: #f8f9fa;
+    background: #f6f8fa;
     padding: 8px 12px;
     border-radius: 6px;
     margin-bottom: 20px;
@@ -310,7 +311,7 @@ body {
 }
 
 .file-item:hover {
-    background: #f8f9fa;
+    background: #f6f8fa;
 }
 
 .file-item:last-child {
@@ -330,11 +331,11 @@ body {
 
 .file-name {
     font-weight: 500;
-    color: #333;
+    color: #24292f;
 }
 
 .file-size, .file-modified {
-    color: #666;
+    color: #656d76;
     font-size: 0.85rem;
     margin-left: 15px;
 }
@@ -347,7 +348,7 @@ body {
 .folder-info {
     margin-top: 20px;
     text-align: center;
-    color: #666;
+    color: #656d76;
     font-size: 0.9rem;
 }
 
@@ -376,7 +377,7 @@ body {
 
 .modal-content h3 {
     margin-bottom: 20px;
-    color: #333;
+    color: #24292f;
 }
 
 .form-group {
@@ -387,7 +388,7 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: #333;
+    color: #24292f;
 }
 
 .form-group input {
@@ -401,7 +402,7 @@ body {
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #0969da;
 }
 
 .modal-actions {
@@ -470,10 +471,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #667eea;
+    background: #0969da;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #5a6fd8;
+    background: #0858b9;
 }

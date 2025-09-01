@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件监控 - 配置权重监控系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📁 文件监控系统</h1>
+            <nav class="nav">
+                <a href="/" class="nav-link">权重配置</a>
+                <a href="/monitor" class="nav-link active">文件监控</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <div class="monitor-dashboard">
+                <div class="folder-section">
+                    <div class="card">
+                        <h2>📂 配置文件列表</h2>
+                        <p class="folder-path">{{ monitor_data.target_folder }}</p>
+                        <div class="file-list" id="targetFileList">
+                            {% for file in monitor_data.target_files %}
+                            <div class="file-item" data-name="{{ file.name }}" data-type="{{ file.type }}">
+                                <div class="file-info">
+                                    <span class="file-icon">{{ '📄' if file.type == 'file' else '📁' }}</span>
+                                    <span class="file-name">{{ file.name }}</span>
+                                    {% if file.type == 'file' %}
+                                    <span class="file-size">{{ file.size }} bytes</span>
+                                    <span class="file-modified">{{ file.modified }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="file-actions">
+                                    <button class="action-btn small rename-btn" data-folder="target" data-name="{{ file.name }}">重命名</button>
+                                    <button class="action-btn small delete-btn" data-folder="target" data-name="{{ file.name }}">删除</button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="folder-info">
+                            <p>最后更新: {{ monitor_data.last_updated }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="folder-section">
+                    <div class="card">
+                        <h2>📁 未挂载配置文件列表</h2>
+                        <p class="folder-path">{{ monitor_data.source_folder }}</p>
+                        <div class="file-list" id="sourceFileList">
+                            {% for file in monitor_data.source_files %}
+                            <div class="file-item" data-name="{{ file.name }}" data-type="{{ file.type }}">
+                                <div class="file-info">
+                                    <span class="file-icon">{{ '📄' if file.type == 'file' else '📁' }}</span>
+                                    <span class="file-name">{{ file.name }}</span>
+                                    {% if file.type == 'file' %}
+                                    <span class="file-size">{{ file.size }} bytes</span>
+                                    <span class="file-modified">{{ file.modified }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="file-actions">
+                                    <button class="action-btn small transfer-btn" data-name="{{ file.name }}">传输</button>
+                                    <button class="action-btn small rename-btn" data-folder="source" data-name="{{ file.name }}">重命名</button>
+                                    <button class="action-btn small delete-btn" data-folder="source" data-name="{{ file.name }}">删除</button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="folder-info">
+                            <p>最后更新: {{ monitor_data.last_updated }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 重命名模态框 -->
+    <div id="renameModal" class="modal">
+        <div class="modal-content">
+            <h3>重命名文件</h3>
+            <div class="form-group">
+                <label>新文件名:</label>
+                <input type="text" id="newFileName" placeholder="输入新文件名">
+            </div>
+            <div class="modal-actions">
+                <button id="confirmRename" class="action-btn primary">确认</button>
+                <button id="cancelRename" class="action-btn">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/monitor.js') }}"></script>
+</body>
+</html>

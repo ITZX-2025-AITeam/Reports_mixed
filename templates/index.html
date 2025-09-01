@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置权重监控系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔧 配置权重监控系统</h1>
+            <nav class="nav">
+                <a href="/" class="nav-link active">权重配置</a>
+                <a href="/monitor" class="nav-link">文件监控</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <div class="dashboard">
+                <div class="card">
+                    <h2>📊 权重分布</h2>
+                    <div id="weightChart" class="chart-container"></div>
+                    <div class="chart-info">
+                        <p>总权重: <span id="totalWeight">{{ config_data.total_weight }}</span></p>
+                        <p>最后更新: <span id="lastUpdated">{{ config_data.last_updated }}</span></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>⚖️ 权重调整</h2>
+                    <div class="weight-controls">
+                        <div class="weight-item" id="privacy-control">
+                            <label>隐私保护:</label>
+                            <input type="range" min="0" max="100" step="1" value="0" class="weight-slider">
+                            <span class="weight-value">0</span>
+                            <button class="update-btn" data-dimension="privacy">更新</button>
+                        </div>
+                        <div class="weight-item" id="functionality-control">
+                            <label>功能性:</label>
+                            <input type="range" min="0" max="100" step="1" value="0" class="weight-slider">
+                            <span class="weight-value">0</span>
+                            <button class="update-btn" data-dimension="functionality">更新</button>
+                        </div>
+                        <div class="weight-item" id="infrastructure-control">
+                            <label>基础设施:</label>
+                            <input type="range" min="0" max="100" step="1" value="0" class="weight-slider">
+                            <span class="weight-value">0</span>
+                            <button class="update-btn" data-dimension="infrastructure">更新</button>
+                        </div>
+                        <div class="weight-item" id="performance-control">
+                            <label>性能:</label>
+                            <input type="range" min="0" max="100" step="1" value="0" class="weight-slider">
+                            <span class="weight-value">0</span>
+                            <button class="update-btn" data-dimension="performance">更新</button>
+                        </div>
+                        <div class="weight-item" id="security-control">
+                            <label>安全性:</label>
+                            <input type="range" min="0" max="100" step="1" value="0" class="weight-slider">
+                            <span class="weight-value">0</span>
+                            <button class="update-btn" data-dimension="security">更新</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>🚀 系统操作</h2>
+                    <div class="action-buttons">
+                        <button id="runEvaluator" class="action-btn primary">运行评估器</button>
+                        <button id="refreshData" class="action-btn">刷新数据</button>
+                    </div>
+                    <div id="actionResult" class="action-result"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -92,10 +92,10 @@ class ConfigManager:
         """默认配置"""
         return {
             "evaluation_weights": {
-                "privacy": {"weight": 0.5},
-                "functionality": {"weight": 0.3},
-                "infrastructure": {"weight": 0.4},
-                "performance": {"weight": 0.5},
+                "privacy": {"weight": 0.8},
+                "functionality": {"weight": 0.7},
+                "infrastructure": {"weight": 0.1},
+                "performance": {"weight": 0.3},
                 "security": {"weight": 0.2}
             },
             "test_configuration": {

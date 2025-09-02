@@ -51,9 +51,6 @@ function initializeEventListeners() {
 function initializeFileOperations() {
     // 添加文件拖拽功能
     addDragAndDropSupport();
-    
-    // 添加文件搜索功能
-    addSearchFunctionality();
 }
 
 // 传输文件
@@ -222,43 +219,7 @@ function addDragAndDropSupport() {
     });
 }
 
-// 添加搜索功能
-function addSearchFunctionality() {
-    // 为每个文件列表添加搜索框
-    const fileLists = document.querySelectorAll('.file-list');
-    
-    fileLists.forEach((list, index) => {
-        const searchBox = document.createElement('div');
-        searchBox.className = 'search-box';
-        searchBox.innerHTML = `
-            <input type="text" placeholder="搜索文件..." class="search-input">
-            <button class="search-btn">🔍</button>
-        `;
-        
-        list.parentElement.insertBefore(searchBox, list);
-        
-        const searchInput = searchBox.querySelector('.search-input');
-        const searchBtn = searchBox.querySelector('.search-btn');
-        
-        // 搜索功能
-        const performSearch = () => {
-            const query = searchInput.value.toLowerCase();
-            const fileItems = list.querySelectorAll('.file-item');
-            
-            fileItems.forEach(item => {
-                const fileName = item.querySelector('.file-name').textContent.toLowerCase();
-                if (fileName.includes(query)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        };
-        
-        searchInput.addEventListener('input', performSearch);
-        searchBtn.addEventListener('click', performSearch);
-    });
-}
+
 
 // 显示通知
 function showNotification(message, type = 'info') {
@@ -300,44 +261,9 @@ function formatDateTime(timestamp) {
     return date.toLocaleString('zh-CN');
 }
 
-// 添加搜索框样式
-const searchStyle = document.createElement('style');
-searchStyle.textContent = `
-    .search-box {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 15px;
-        align-items: center;
-    }
-    
-    .search-input {
-        flex: 1;
-        padding: 8px 12px;
-        border: 2px solid #ddd;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        transition: border-color 0.3s ease;
-    }
-    
-    .search-input:focus {
-        outline: none;
-        border-color: #667eea;
-    }
-    
-    .search-btn {
-        padding: 8px 12px;
-        background: #0969da;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .search-btn:hover {
-        background: #0858b9;
-    }
-    
+// 添加拖拽和悬停效果样式
+const dragStyle = document.createElement('style');
+dragStyle.textContent = `
     .drag-over {
         background: rgba(9, 105, 218, 0.1);
         border: 2px dashed #0969da;
@@ -352,4 +278,4 @@ searchStyle.textContent = `
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 `;
-document.head.appendChild(searchStyle);
+document.head.appendChild(dragStyle);

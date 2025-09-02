@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 # 确保输出目录存在
 def ensure_output_directory():
     """确保输出目录存在，如果不存在则创建"""
-    output_dir = "output"
+    output_dir = "/root/server/MCSM_Change/my_services/Reports_mixed/output"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         logger.info(f"✅ 创建输出目录: {output_dir}")
@@ -92,9 +92,9 @@ class ConfigManager:
         """默认配置"""
         return {
             "evaluation_weights": {
-                "privacy": {"weight": 0.7},
+                "privacy": {"weight": 0.5},
                 "functionality": {"weight": 0.3},
-                "infrastructure": {"weight": 0.1},
+                "infrastructure": {"weight": 0.4},
                 "performance": {"weight": 0.5},
                 "security": {"weight": 0.2}
             },

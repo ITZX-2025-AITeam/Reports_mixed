@@ -320,7 +320,8 @@ def update_fusion_evaluator_weights(dimension: str, new_weight: float):
     """直接更新fusion_evaluator.py文件中的权重配置"""
     try:
         # 读取fusion_evaluator.py文件
-        with open('fusion_evaluator.py', 'r', encoding='utf-8') as f:
+        script_path = '/root/server/MCSM_Change/my_services/Reports_mixed/fusion_evaluator.py'
+        with open(script_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
         import re
@@ -339,7 +340,7 @@ def update_fusion_evaluator_weights(dimension: str, new_weight: float):
             return False
         
         # 写回文件
-        with open('fusion_evaluator.py', 'w', encoding='utf-8') as f:
+        with open(script_path, 'w', encoding='utf-8') as f:
             f.write(new_content)
         
         print(f"✅ 成功更新 {dimension} 权重为 {new_weight}")
@@ -370,8 +371,9 @@ def update_weight():
 
 if __name__ == '__main__':
     # 确保templates目录存在
-    if not os.path.exists('templates'):
-        os.makedirs('templates')
+    templates_dir = '/root/server/MCSM_Change/my_services/Reports_mixed/templates'
+    if not os.path.exists(templates_dir):
+        os.makedirs(templates_dir)
     
     print("🚀 启动配置权重监控Web应用...")
     print("📊 访问地址: http://localhost:5201")

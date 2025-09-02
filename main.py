@@ -75,7 +75,7 @@ def get_folder_monitor_data():
                     target_files.append({
                         'name': item,
                         'size': stat.st_size,
-                        'modified': datetime.fromtimestamp(stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S'),
+                        'modified': datetime.fromtimestamp(stat.st_mtime).strftime('%m-%d %H:%M:%S'),
                         'type': 'file'
                     })
                 elif os.path.isdir(item_path):
@@ -95,7 +95,7 @@ def get_folder_monitor_data():
                     source_files.append({
                         'name': item,
                         'size': stat.st_size,
-                        'modified': datetime.fromtimestamp(stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S'),
+                        'modified': datetime.fromtimestamp(stat.st_mtime).strftime('%m-%d %H:%M:%S'),
                         'type': 'file'
                     })
                 elif os.path.isdir(item_path):

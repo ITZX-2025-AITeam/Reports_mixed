@@ -20,22 +20,22 @@
             <div class="monitor-dashboard">
                 <div class="folder-section">
                     <div class="card">
-                        <h2>📂 配置文件列表</h2>
-                        <p class="folder-path">{{ monitor_data.target_folder }}</p>
-                        <div class="file-list" id="targetFileList">
-                            {% for file in monitor_data.target_files %}
+                        <h2>📁 未挂载配置文件列表</h2>
+                        <p class="folder-path">输出文件目录</p>
+                        <div class="file-list" id="sourceFileList">
+                            {% for file in monitor_data.source_files %}
                             <div class="file-item" data-name="{{ file.name }}" data-type="{{ file.type }}">
                                 <div class="file-info">
                                     <span class="file-icon">{{ '📄' if file.type == 'file' else '📁' }}</span>
                                     <span class="file-name">{{ file.name }}</span>
                                     {% if file.type == 'file' %}
-                                    <span class="file-size">{{ file.size }} bytes</span>
                                     <span class="file-modified">{{ file.modified }}</span>
                                     {% endif %}
                                 </div>
                                 <div class="file-actions">
-                                    <button class="action-btn small rename-btn" data-folder="target" data-name="{{ file.name }}">重命名</button>
-                                    <button class="action-btn small delete-btn" data-folder="target" data-name="{{ file.name }}">删除</button>
+                                    <button class="action-btn small transfer-btn" data-name="{{ file.name }}">传输</button>
+                                    <button class="action-btn small rename-btn" data-folder="source" data-name="{{ file.name }}">重命名</button>
+                                    <button class="action-btn small delete-btn" data-folder="source" data-name="{{ file.name }}">删除</button>
                                 </div>
                             </div>
                             {% endfor %}
@@ -48,23 +48,21 @@
 
                 <div class="folder-section">
                     <div class="card">
-                        <h2>📁 未挂载配置文件列表</h2>
-                        <p class="folder-path">{{ monitor_data.source_folder }}</p>
-                        <div class="file-list" id="sourceFileList">
-                            {% for file in monitor_data.source_files %}
+                        <h2>📂 配置文件列表</h2>
+                        <p class="folder-path">配置文件目录</p>
+                        <div class="file-list" id="targetFileList">
+                            {% for file in monitor_data.target_files %}
                             <div class="file-item" data-name="{{ file.name }}" data-type="{{ file.type }}">
                                 <div class="file-info">
                                     <span class="file-icon">{{ '📄' if file.type == 'file' else '📁' }}</span>
                                     <span class="file-name">{{ file.name }}</span>
                                     {% if file.type == 'file' %}
-                                    <span class="file-size">{{ file.size }} bytes</span>
                                     <span class="file-modified">{{ file.modified }}</span>
                                     {% endif %}
                                 </div>
                                 <div class="file-actions">
-                                    <button class="action-btn small transfer-btn" data-name="{{ file.name }}">传输</button>
-                                    <button class="action-btn small rename-btn" data-folder="source" data-name="{{ file.name }}">重命名</button>
-                                    <button class="action-btn small delete-btn" data-folder="source" data-name="{{ file.name }}">删除</button>
+                                    <button class="action-btn small rename-btn" data-folder="target" data-name="{{ file.name }}">重命名</button>
+                                    <button class="action-btn small delete-btn" data-folder="target" data-name="{{ file.name }}">删除</button>
                                 </div>
                             </div>
                             {% endfor %}

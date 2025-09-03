@@ -316,6 +316,53 @@ def run_fusion_evaluator():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
+def initialize_all_weights_to_default():
+    """仅在程序第一次运行时将所有权重初始化为0.3"""
+    try:
+        # 检查初始化标记文件
+        init_flag_file = '/root/server/MCSM_Change/my_services/Reports_mixed/.weights_initialized'
+        
+        # 如果标记文件存在，说明已经初始化过，跳过初始化
+        if os.path.exists(init_flag_file):
+            print("⏭️ 权重已初始化过，跳过初始化步骤")
+            return True
+        
+        # 定义所有维度
+        dimensions = ['privacy', 'functionality', 'infrastructure', 'performance', 'security']
+        default_weight = 0.3
+        
+        # 读取fusion_evaluator.py文件
+        script_path = '/root/server/MCSM_Change/my_services/Reports_mixed/fusion_evaluator.py'
+        with open(script_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        import re
+        
+        # 为每个维度更新权重
+        for dimension in dimensions:
+            # 构建更精确的正则表达式来匹配get_default_config方法中的权重
+            # 匹配格式: "dimension": {"weight": value}
+            pattern = rf'(\s*)"{dimension}":\s*\{{"weight":\s*([0-9.]+)\}}'
+            replacement = rf'\1"{dimension}": {{"weight": {default_weight}}}'
+            
+            # 执行替换
+            content = re.sub(pattern, replacement, content)
+        
+        # 写回文件
+        with open(script_path, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        # 创建初始化标记文件
+        with open(init_flag_file, 'w', encoding='utf-8') as f:
+            f.write(f"权重初始化完成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"初始化权重值: {default_weight}\n")
+        
+        print(f"✅ 首次运行，成功将所有权重初始化为 {default_weight}")
+        return True
+    except Exception as e:
+        print(f"❌ 初始化权重失败: {e}")
+        return False
+
 def update_fusion_evaluator_weights(dimension: str, new_weight: float):
     """直接更新fusion_evaluator.py文件中的权重配置"""
     try:
@@ -374,6 +421,10 @@ if __name__ == '__main__':
     templates_dir = '/root/server/MCSM_Change/my_services/Reports_mixed/templates'
     if not os.path.exists(templates_dir):
         os.makedirs(templates_dir)
+    
+    # 在程序启动时初始化所有权重为0.3
+    print("🔧 初始化权重配置...")
+    initialize_all_weights_to_default()
     
     print("🚀 启动配置权重监控Web应用...")
     print("📊 访问地址: http://localhost:5201")

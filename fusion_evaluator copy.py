@@ -92,11 +92,11 @@ class ConfigManager:
         """默认配置"""
         return {
             "evaluation_weights": {
-                "privacy": {"weight": 0.3},
-                "functionality": {"weight": 0.6},
-                "infrastructure": {"weight": 0.3},
-                "performance": {"weight": 0.8},
-                "security": {"weight": 0.7}
+                "privacy": {"weight": 0.8},
+                "functionality": {"weight": 0.7},
+                "infrastructure": {"weight": 0.1},
+                "performance": {"weight": 0.3},
+                "security": {"weight": 0.2}
             },
             "test_configuration": {
                 "target_url": "192.168.1.103:5011"
@@ -136,17 +136,12 @@ class FusionEvaluator:
     #### 安全维度检查
     def security_dimension_check(self):
         
-        cpu_percent = psutil.cpu_percent(interval=1)
+        cpu_percent = psutil.cpu_percent(interval = 1)
         memory = psutil.virtual_memory()
+
+        data_sample = "user_data_123456"
         
-        data_sample = "sensitive_user_data_12345"
-        data_hash = hashlib.sha256(data_sample.encode()).hexdigest()
         
-        model_input = "test prompt for model safety"
-        model_response_time = time.time()
-        
-        system_processes = len(psutil.pids())
-        network_connections = len(psutil.net_connections())
         
         return {
             'infrastructure': {'cpu_percent': cpu_percent, 'memory_percent': memory.percent},
